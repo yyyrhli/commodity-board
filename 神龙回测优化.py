@@ -16,7 +16,8 @@ import sys
 from collections import OrderedDict
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-DATA = "/home/yihuiyan/数据"
+# 历史 M1 数据目录：优先读环境变量，否则用脚本同级的 ./数据
+DATA = os.environ.get("QUANT_DATA_DIR") or os.path.join(BASE, "数据")
 
 # ---- 加载 gold_predictor 模块(复用信号引擎) ----
 spec = importlib.util.spec_from_file_location("gp", os.path.join(BASE, "gold_predictor.py"))
