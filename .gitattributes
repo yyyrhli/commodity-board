@@ -1,0 +1,23 @@
+# 统一换行符，避免脚本在 Linux 上因 CRLF 报 bad interpreter
+* text=auto
+
+# 必须在 Linux / macOS 上执行的脚本，强制 LF
+*.sh    text eol=lf
+*.py    text eol=lf
+
+# Windows 批处理必须 CRLF
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# 文本类
+*.md    text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+
+# 压缩/二进制资源不做换行转换
+*.min.js  -text
+*.png     binary
+*.jpg     binary
+*.docx    binary
+*.zip     binary
