@@ -1,0 +1,241 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 960" width="1200" height="960" font-family="-apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b0f16"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="accentBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#58a6ff"/>
+      <stop offset="50%" stop-color="#a371f7"/>
+      <stop offset="100%" stop-color="#3fb950"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#484f58"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58a6ff"/>
+    </marker>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="960" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="3" fill="url(#accentBar)"/>
+
+  <!-- ===================== 标题 ===================== -->
+  <text x="48" y="56" fill="#e6edf3" font-size="25" font-weight="700" letter-spacing="0.5">大宗商品多周期预测看板 · 系统架构</text>
+  <text x="48" y="84" fill="#8b949e" font-size="13">14 个国际品种 × 7 个时间周期 · 纯 Python 标准库 · 单文件部署 · 零第三方依赖</text>
+  <rect x="48" y="98" width="1104" height="1" fill="#21262d"/>
+
+  <!-- ===================== 层 1 数据源 ===================== -->
+  <g>
+    <rect x="48" y="122" width="4" height="86" rx="2" fill="#58a6ff"/>
+    <text x="64" y="152" fill="#58a6ff" font-size="14" font-weight="600">数据源</text>
+    <text x="64" y="172" fill="#6e7681" font-size="11">无需 API Key</text>
+    <text x="64" y="190" fill="#6e7681" font-size="11">公开行情接口</text>
+
+    <g>
+      <rect x="150" y="122" width="240" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+      <text x="170" y="150" fill="#e6edf3" font-size="13" font-weight="600">新浪财经</text>
+      <text x="170" y="170" fill="#8b949e" font-size="11">hq.sinajs.cn</text>
+      <text x="170" y="189" fill="#6e7681" font-size="10.5">实时报价 · 3 秒一次批量</text>
+    </g>
+    <g>
+      <rect x="406" y="122" width="240" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+      <text x="426" y="150" fill="#e6edf3" font-size="13" font-weight="600">东方财富</text>
+      <text x="426" y="170" fill="#8b949e" font-size="11">push2his.eastmoney.com</text>
+      <text x="426" y="189" fill="#6e7681" font-size="10.5">M15 / M30 / H1 / H4 / D1 K 线</text>
+    </g>
+    <g>
+      <rect x="662" y="122" width="240" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+      <text x="682" y="150" fill="#e6edf3" font-size="13" font-weight="600">新浪财经滚动新闻</text>
+      <text x="682" y="170" fill="#8b949e" font-size="11">feed.mix.sina.com.cn</text>
+      <text x="682" y="189" fill="#6e7681" font-size="10.5">财经快讯 · 关键词打标</text>
+    </g>
+    <g>
+      <rect x="918" y="122" width="234" height="86" rx="8" fill="#161b22" stroke="#2d333b" stroke-dasharray="4 3"/>
+      <text x="938" y="150" fill="#c9d1d9" font-size="13" font-weight="600">Twelve Data</text>
+      <text x="938" y="170" fill="#8b949e" font-size="11">api.twelvedata.com</text>
+      <text x="938" y="189" fill="#6e7681" font-size="10.5">限流兜底 · 可选</text>
+    </g>
+  </g>
+
+  <line x1="600" y1="208" x2="600" y2="246" stroke="#484f58" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="614" y="232" fill="#6e7681" font-size="10.5">HTTP / JSON</text>
+
+  <!-- ===================== 层 2 采集 ===================== -->
+  <g>
+    <rect x="48" y="252" width="4" height="86" rx="2" fill="#79c0ff"/>
+    <text x="64" y="282" fill="#79c0ff" font-size="14" font-weight="600">采集层</text>
+    <text x="64" y="302" fill="#6e7681" font-size="11">后台常驻线程</text>
+    <text x="64" y="320" fill="#6e7681" font-size="11">独立调度</text>
+
+    <rect x="150" y="252" width="322" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="170" y="279" fill="#e6edf3" font-size="13" font-weight="600">tick_loop</text>
+    <text x="238" y="279" fill="#58a6ff" font-size="11">每 3 秒</text>
+    <text x="170" y="299" fill="#8b949e" font-size="11">批量拉取全部品种最新价</text>
+    <text x="170" y="318" fill="#6e7681" font-size="10.5">→ 本地合成 M1 K 线，维护价差与高低点</text>
+
+    <rect x="488" y="252" width="322" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="508" y="279" fill="#e6edf3" font-size="13" font-weight="600">updater_loop</text>
+    <text x="590" y="279" fill="#58a6ff" font-size="11">每 45 秒</text>
+    <text x="508" y="299" fill="#8b949e" font-size="11">当前品种完整重算，其余轮询（约 10 分钟一轮）</text>
+    <text x="508" y="318" fill="#6e7681" font-size="10.5">→ 七周期抓取 + 全指标计算 + 落盘快照</text>
+
+    <rect x="826" y="252" width="326" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="846" y="279" fill="#e6edf3" font-size="13" font-weight="600">fundflow_loop</text>
+    <text x="946" y="279" fill="#58a6ff" font-size="11">逐笔</text>
+    <text x="846" y="299" fill="#8b949e" font-size="11">东财逐笔成交明细</text>
+    <text x="846" y="318" fill="#6e7681" font-size="10.5">→ 主动买/卖拆单，算主力与散户占比</text>
+  </g>
+
+  <line x1="600" y1="338" x2="600" y2="376" stroke="#484f58" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="614" y="362" fill="#6e7681" font-size="10.5">内存中的 K 线序列</text>
+
+  <!-- ===================== 层 3 计算 ===================== -->
+  <g>
+    <rect x="48" y="382" width="4" height="176" rx="2" fill="#a371f7"/>
+    <text x="64" y="412" fill="#a371f7" font-size="14" font-weight="600">计算层</text>
+    <text x="64" y="432" fill="#6e7681" font-size="11">纯 Python</text>
+    <text x="64" y="450" fill="#6e7681" font-size="11">手写实现</text>
+
+    <!-- 重采样 -->
+    <rect x="150" y="382" width="470" height="76" rx="8" fill="#12161d" stroke="#30363d"/>
+    <text x="170" y="407" fill="#c9d1d9" font-size="12.5" font-weight="600">周期重采样</text>
+    <text x="170" y="427" fill="#8b949e" font-size="11">M1 为基准，向上聚合出六个周期</text>
+    <g font-size="10.5">
+      <rect x="170" y="434" width="46" height="19" rx="4" fill="#1f6feb" opacity="0.22"/>
+      <text x="193" y="447" fill="#79c0ff" text-anchor="middle">M1</text>
+      <text x="226" y="447" fill="#484f58">→</text>
+      <rect x="240" y="434" width="46" height="19" rx="4" fill="#30363d"/>
+      <text x="263" y="447" fill="#c9d1d9" text-anchor="middle">M5</text>
+      <rect x="294" y="434" width="46" height="19" rx="4" fill="#30363d"/>
+      <text x="317" y="447" fill="#c9d1d9" text-anchor="middle">M15</text>
+      <rect x="348" y="434" width="46" height="19" rx="4" fill="#30363d"/>
+      <text x="371" y="447" fill="#c9d1d9" text-anchor="middle">M30</text>
+      <rect x="402" y="434" width="46" height="19" rx="4" fill="#30363d"/>
+      <text x="425" y="447" fill="#c9d1d9" text-anchor="middle">H1</text>
+      <rect x="456" y="434" width="46" height="19" rx="4" fill="#30363d"/>
+      <text x="479" y="447" fill="#c9d1d9" text-anchor="middle">H4</text>
+      <rect x="510" y="434" width="46" height="19" rx="4" fill="#30363d"/>
+      <text x="533" y="447" fill="#c9d1d9" text-anchor="middle">D1</text>
+    </g>
+
+    <!-- 指标 -->
+    <rect x="150" y="470" width="470" height="88" rx="8" fill="#12161d" stroke="#30363d"/>
+    <text x="170" y="495" fill="#c9d1d9" font-size="12.5" font-weight="600">技术指标（全部自实现，不依赖 TA-Lib）</text>
+    <g font-size="10.5">
+      <rect x="170" y="506" width="66" height="20" rx="4" fill="#30363d"/><text x="203" y="520" fill="#c9d1d9" text-anchor="middle">EMA / SMA</text>
+      <rect x="242" y="506" width="56" height="20" rx="4" fill="#30363d"/><text x="270" y="520" fill="#c9d1d9" text-anchor="middle">MACD</text>
+      <rect x="304" y="506" width="46" height="20" rx="4" fill="#30363d"/><text x="327" y="520" fill="#c9d1d9" text-anchor="middle">RSI</text>
+      <rect x="356" y="506" width="64" height="20" rx="4" fill="#30363d"/><text x="388" y="520" fill="#c9d1d9" text-anchor="middle">BOLL</text>
+      <rect x="426" y="506" width="60" height="20" rx="4" fill="#8b6bff" opacity="0.25"/><text x="456" y="520" fill="#c9b6ff" text-anchor="middle">KDJ</text>
+      <rect x="492" y="506" width="108" height="20" rx="4" fill="#8b6bff" opacity="0.25"/><text x="546" y="520" fill="#c9b6ff" text-anchor="middle">神龙通道 (XMA)</text>
+    </g>
+    <text x="170" y="547" fill="#6e7681" font-size="10.5">神龙通道为 MQL 版本的 Python 移植：XMA + 90 周期带宽 + 3.9 倍系数，可与 MT5 端逐信号对齐</text>
+
+    <!-- 评分 -->
+    <rect x="636" y="382" width="516" height="176" rx="8" fill="#161b22" stroke="#8b6bff" stroke-opacity="0.45"/>
+    <text x="656" y="408" fill="#c9b6ff" font-size="12.5" font-weight="600">多周期评分与方向判定</text>
+    <text x="656" y="428" fill="#8b949e" font-size="11">每个周期独立出结论，再合成到 D1</text>
+    <g font-size="11">
+      <text x="656" y="456" fill="#6e7681">方向</text>
+      <rect x="700" y="442" width="40" height="19" rx="4" fill="#ff4d4f" opacity="0.18"/><text x="720" y="455" fill="#ff7b7d" text-anchor="middle" font-size="10.5">多</text>
+      <rect x="746" y="442" width="40" height="19" rx="4" fill="#3fb950" opacity="0.18"/><text x="766" y="455" fill="#56d364" text-anchor="middle" font-size="10.5">空</text>
+      <rect x="792" y="442" width="52" height="19" rx="4" fill="#d29922" opacity="0.18"/><text x="818" y="455" fill="#e3b341" text-anchor="middle" font-size="10.5">震荡</text>
+      <text x="656" y="482" fill="#6e7681">置信度</text>
+      <rect x="700" y="468" width="144" height="19" rx="4" fill="#21262d"/>
+      <rect x="700" y="468" width="104" height="19" rx="4" fill="#58a6ff" opacity="0.35"/>
+      <text x="772" y="481" fill="#79c0ff" text-anchor="middle" font-size="10.5">0 – 100 %</text>
+      <text x="656" y="508" fill="#6e7681">评分</text>
+      <text x="700" y="508" fill="#c9d1d9" font-size="11">−100 … +100（正偏多 / 负偏空）</text>
+      <text x="656" y="532" fill="#6e7681">修正项</text>
+      <text x="700" y="532" fill="#c9d1d9" font-size="11">RSI 超买超卖 · 量能放大 · 持仓情绪</text>
+    </g>
+    <rect x="656" y="540" width="476" height="1" fill="#21262d"/>
+  </g>
+
+  <line x1="600" y1="558" x2="600" y2="596" stroke="#484f58" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===================== 层 4 应用 ===================== -->
+  <g>
+    <rect x="48" y="602" width="4" height="86" rx="2" fill="#d29922"/>
+    <text x="64" y="632" fill="#d29922" font-size="14" font-weight="600">应用层</text>
+    <text x="64" y="652" fill="#6e7681" font-size="11">独立线程</text>
+    <text x="64" y="670" fill="#6e7681" font-size="11">各自持有锁</text>
+
+    <rect x="150" y="602" width="240" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="170" y="629" fill="#e6edf3" font-size="13" font-weight="600">模拟盘引擎</text>
+    <text x="170" y="649" fill="#8b949e" font-size="11">保证金 / 手续费 / 浮动盈亏</text>
+    <text x="170" y="668" fill="#6e7681" font-size="10.5">真实合约乘数结算</text>
+
+    <rect x="406" y="602" width="240" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="426" y="629" fill="#e6edf3" font-size="13" font-weight="600">自动交易机器人</text>
+    <text x="426" y="649" fill="#8b949e" font-size="11">AI 复合评分 / 神龙通道</text>
+    <text x="426" y="668" fill="#6e7681" font-size="10.5">止损止盈 · 冷却 · 超时</text>
+
+    <rect x="662" y="602" width="240" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="682" y="629" fill="#e6edf3" font-size="13" font-weight="600">邮件提醒</text>
+    <text x="682" y="649" fill="#8b949e" font-size="11">SMTP 直发，5 分钟巡检</text>
+    <text x="682" y="668" fill="#6e7681" font-size="10.5">高置信 / 放量 / 翻转 / 简报</text>
+
+    <rect x="918" y="602" width="234" height="86" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="938" y="629" fill="#e6edf3" font-size="13" font-weight="600">准确率回判</text>
+    <text x="938" y="649" fill="#8b949e" font-size="11">到期自动核验命中</text>
+    <text x="938" y="668" fill="#6e7681" font-size="10.5">四维度分档统计</text>
+  </g>
+
+  <line x1="600" y1="688" x2="600" y2="726" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <text x="614" y="712" fill="#58a6ff" font-size="10.5">12 个 JSON API</text>
+
+  <!-- ===================== 层 5 展示 ===================== -->
+  <g>
+    <rect x="48" y="732" width="4" height="86" rx="2" fill="#3fb950"/>
+    <text x="64" y="762" fill="#3fb950" font-size="14" font-weight="600">展示层</text>
+    <text x="64" y="782" fill="#6e7681" font-size="11">单页应用</text>
+    <text x="64" y="800" fill="#6e7681" font-size="11">原生 JS</text>
+
+    <g font-size="11.5">
+      <rect x="150" y="732" width="152" height="86" rx="8" fill="#161b22" stroke="#3fb950" stroke-opacity="0.4"/>
+      <text x="226" y="766" fill="#e6edf3" text-anchor="middle" font-weight="600">行情首页</text>
+      <text x="226" y="788" fill="#8b949e" text-anchor="middle" font-size="10.5">14 卡片总览</text>
+
+      <rect x="314" y="732" width="152" height="86" rx="8" fill="#161b22" stroke="#3fb950" stroke-opacity="0.4"/>
+      <text x="390" y="766" fill="#e6edf3" text-anchor="middle" font-weight="600">商品详情</text>
+      <text x="390" y="788" fill="#8b949e" text-anchor="middle" font-size="10.5">K 线 + 八周期</text>
+
+      <rect x="478" y="732" width="152" height="86" rx="8" fill="#161b22" stroke="#3fb950" stroke-opacity="0.4"/>
+      <text x="554" y="766" fill="#e6edf3" text-anchor="middle" font-weight="600">模拟交易</text>
+      <text x="554" y="788" fill="#8b949e" text-anchor="middle" font-size="10.5">下单 / 持仓</text>
+
+      <rect x="642" y="732" width="152" height="86" rx="8" fill="#161b22" stroke="#3fb950" stroke-opacity="0.4"/>
+      <text x="718" y="766" fill="#e6edf3" text-anchor="middle" font-weight="600">提醒设置</text>
+      <text x="718" y="788" fill="#8b949e" text-anchor="middle" font-size="10.5">SMTP + 触发条件</text>
+
+      <rect x="806" y="732" width="152" height="86" rx="8" fill="#161b22" stroke="#3fb950" stroke-opacity="0.4"/>
+      <text x="882" y="766" fill="#e6edf3" text-anchor="middle" font-weight="600">自动交易</text>
+      <text x="882" y="788" fill="#8b949e" text-anchor="middle" font-size="10.5">参数 / 回测</text>
+
+      <rect x="970" y="732" width="182" height="86" rx="8" fill="#161b22" stroke="#3fb950" stroke-opacity="0.4"/>
+      <text x="1061" y="766" fill="#e6edf3" text-anchor="middle" font-weight="600">准确率统计</text>
+      <text x="1061" y="788" fill="#8b949e" text-anchor="middle" font-size="10.5">按周期 / 置信度 / 品种</text>
+    </g>
+  </g>
+
+  <!-- ===================== 底部技术栈 ===================== -->
+  <rect x="48" y="856" width="1104" height="1" fill="#21262d"/>
+  <text x="48" y="884" fill="#8b949e" font-size="11.5">运行环境</text>
+  <text x="122" y="884" fill="#c9d1d9" font-size="11.5">Python 3.8+ · 仅标准库（http.server / socketserver / threading / urllib / json / smtplib）</text>
+
+  <text x="48" y="908" fill="#8b949e" font-size="11.5">部署形态</text>
+  <text x="122" y="908" fill="#c9d1d9" font-size="11.5">两个文件（gold_predictor.py + echarts.min.js），无构建步骤，无数据库，无外部服务依赖</text>
+
+  <text x="48" y="932" fill="#8b949e" font-size="11.5">代码规模</text>
+  <text x="122" y="932" fill="#c9d1d9" font-size="11.5">单文件 4,500+ 行 · 后端与内嵌 SPA 同文件 · 六个后台线程并发</text>
+
+  <!-- 右侧角标 -->
+  <text x="1152" y="884" fill="#30363d" font-size="11" text-anchor="end">github.com/yyyrhli/commodity-board</text>
+  <text x="1152" y="908" fill="#30363d" font-size="11" text-anchor="end">v1.0</text>
+</svg>
